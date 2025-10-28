@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.19)
 project(sem3lab2 LANGUAGES CXX)
 
 find_package(Qt6 6.5 REQUIRED COMPONENTS Core Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Core Widgets)
 
 qt_standard_project_setup()
 
@@ -11,7 +12,11 @@ qt_add_executable(sem3lab2
     mainwindow.cpp
     mainwindow.h
     mainwindow.ui
-    Resources.qrc
+
+    TimerAppResources.qrc
+    addwindow.h addwindow.cpp addwindow.ui
+
+
 )
 
 target_link_libraries(sem3lab2
@@ -19,6 +24,7 @@ target_link_libraries(sem3lab2
         Qt::Core
         Qt::Widgets
 )
+target_link_libraries(sem3lab2 PRIVATE Qt6::Core Qt6::Widgets)
 
 include(GNUInstallDirs)
 

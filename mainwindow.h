@@ -2,20 +2,29 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+// #include <QVBoxLayout>
+// #include <QProcess>
+
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
+namespace Ui { class mainWindow; }
 QT_END_NAMESPACE
 
-class MainWindow : public QMainWindow
+class mainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    mainWindow(QWidget *parent = nullptr);
+    ~mainWindow();
+
+private slots:
+
+    void timersMenu(); //addTimer()
+
 
 private:
-    Ui::MainWindow *ui;
+    Ui::mainWindow *ui;
+
 };
 #endif // MAINWINDOW_H
