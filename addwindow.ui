@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Select what to Add</string>
   </property>
   <widget class="QPushButton" name="addTimer">
    <property name="geometry">

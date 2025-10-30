@@ -20,7 +20,7 @@ public:
 
 private slots:
 
-    void timersMenu(); //addTimer()
+    void createAddWindow();
 
 
 private:

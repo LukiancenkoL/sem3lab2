@@ -11,6 +11,9 @@ mainWindow::mainWindow(QWidget *parent)
     ui->setupUi(this);
     this->setWindowIcon(QIcon("qrc:/Resources/icon/icon.ico"));
 
+    this->ui->doNotDisturb->setChecked(false);
+
+    connect(this->ui->addButton, SIGNAL(clicked(bool)), this, SLOT(createAddWindow()));
 
 }
 
@@ -19,10 +22,15 @@ mainWindow::~mainWindow()
     delete ui;
 }
 
-void mainWindow::timersMenu()
+void mainWindow::createAddWindow()
 {
-    addWindow menuWindow;
-    menuWindow.setModal(true);
+    addWindow AddWindow;
+    AddWindow.setModal(true);
+
+    if (!AddWindow.exec())
+    {
+        return;
+    }
 
 
 }

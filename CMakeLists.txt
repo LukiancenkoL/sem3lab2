@@ -15,6 +15,8 @@ qt_add_executable(sem3lab2
 
     TimerAppResources.qrc
     addwindow.h addwindow.cpp addwindow.ui
+    alarmswindow.h alarmswindow.cpp alarmswindow.ui
+    timerswindow.h timerswindow.cpp timerswindow.ui
 
 
 )
