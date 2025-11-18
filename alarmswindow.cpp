@@ -2,7 +2,7 @@
 #include "ui_alarmswindow.h"
 
 alarmsWindow::alarmsWindow(QWidget *parent)
-    : QWidget(parent)
+    : QDialog(parent)
     , ui(new Ui::alarmsWindow)
 {
     ui->setupUi(this);

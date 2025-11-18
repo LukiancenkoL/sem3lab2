@@ -16,8 +16,13 @@ public:
     explicit addWindow(QWidget *parent = nullptr);
     ~addWindow();
 
+private slots:
+    void createTimerWindow();
+    void createAlarmWindow();
+
+
 private:
-    Ui::addWindow *ui;
+    Ui::addWindow *ui {};
 };
 
 #endif // ADDWINDOW_H
