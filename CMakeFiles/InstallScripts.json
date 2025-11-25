@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/misha/personal/qt-timer/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

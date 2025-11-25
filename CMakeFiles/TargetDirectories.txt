@@ -1,0 +1,9 @@
+/home/misha/personal/qt-timer/CMakeFiles/sem3lab2.dir
+/home/misha/personal/qt-timer/CMakeFiles/edit_cache.dir
+/home/misha/personal/qt-timer/CMakeFiles/rebuild_cache.dir
+/home/misha/personal/qt-timer/CMakeFiles/list_install_components.dir
+/home/misha/personal/qt-timer/CMakeFiles/install.dir
+/home/misha/personal/qt-timer/CMakeFiles/install/local.dir
+/home/misha/personal/qt-timer/CMakeFiles/install/strip.dir
+/home/misha/personal/qt-timer/CMakeFiles/sem3lab2_autogen_timestamp_deps.dir
+/home/misha/personal/qt-timer/CMakeFiles/sem3lab2_autogen.dir

@@ -3,26 +3,29 @@
 
 #include <QWidget>
 #include <QDialog>
+#include <qstringliteral.h>
 
 namespace Ui {
-class addWindow;
+class AddWindow;
 }
 
-class addWindow : public QDialog
+class AddWindow : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit addWindow(QWidget *parent = nullptr);
-    ~addWindow();
-
+    explicit AddWindow(QWidget *parent = nullptr);
+    ~AddWindow();
+    QString documentPath() const;
+    void resetPath();
 private slots:
     void createTimerWindow();
     void createAlarmWindow();
-
+    void openFileExplorer();
 
 private:
-    Ui::addWindow *ui {};
+    Ui::AddWindow *ui{};
+    QString m_documentPath{};
 };
 
 #endif // ADDWINDOW_H

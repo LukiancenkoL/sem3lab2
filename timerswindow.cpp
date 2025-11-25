@@ -1,40 +1,40 @@
 #include "timerswindow.h"
 #include "ui_timerswindow.h"
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
 #include "addwindow.h"
-#include "ui_addwindow.h"
 
 #include <chrono>
 #include <QTime>
+#include <memory>
 
-timersWindow::timersWindow(QWidget *parent)
-    : QDialog(parent)
-    , ui(new Ui::timersWindow)
+TimersWindow::TimersWindow(QWidget *parent) : QDialog{ parent }, ui{ new Ui::TimersWindow }
 {
     ui->setupUi(this);
     connect(this->ui->startButton, SIGNAL(clicked(bool)), this, SLOT(startTimer()));
 }
 
-timersWindow::~timersWindow()
+TimersWindow::~TimersWindow()
 {
     delete ui;
 }
 
-void timersWindow::startTimer ()
+void TimersWindow::startTimer()
 {
-    std::chrono::hours hours {this->ui->hours->value()};
-    std::chrono::minutes minutes {this->ui->minutes->value()};
-    std::chrono::seconds seconds {this->ui->seconds->value()};
-    std::chrono::milliseconds milliseconds {std::chrono::duration_cast<std::chrono::milliseconds>(hours) +
-                                           std::chrono::duration_cast<std::chrono::milliseconds>(minutes) +
-                                           std::chrono::duration_cast<std::chrono::milliseconds>(seconds)};
+    const std::chrono::hours hours{ this->ui->hours->value() };
+    const std::chrono::minutes minutes{ this->ui->minutes->value() };
+    const std::chrono::seconds seconds{ this->ui->seconds->value() };
+    const std::chrono::milliseconds milliseconds{
+        std::chrono::duration_cast<std::chrono::milliseconds>(hours)
+        + std::chrono::duration_cast<std::chrono::milliseconds>(minutes)
+        + std::chrono::duration_cast<std::chrono::milliseconds>(seconds)
+    };
 
-    auto *addwindow = qobject_cast<addWindow*>(this->parentWidget());
-    auto *mainwindow = qobject_cast<mainWindow*>(addwindow->parentWidget());
+    auto *addwindow = qobject_cast<AddWindow *>(this->parentWidget());
+    const auto documentPath = addwindow->documentPath();
+    auto *mainwindow = qobject_cast<MainWindow *>(addwindow->parentWidget());
 
-    mainwindow->timers_list_add_item(Timer{milliseconds});
+    mainwindow->timersListAddItem(std::make_unique<Timer>(milliseconds, documentPath));
+    addwindow->resetPath();
 
-    timersWindow::accept();
+    TimersWindow::accept();
 }
-

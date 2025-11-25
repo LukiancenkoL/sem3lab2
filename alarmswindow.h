@@ -4,19 +4,22 @@
 #include <QDialog>
 
 namespace Ui {
-class alarmsWindow;
+class AlarmsWindow;
 }
 
-class alarmsWindow : public QDialog
+class AlarmsWindow : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit alarmsWindow(QWidget *parent = nullptr);
-    ~alarmsWindow();
+    explicit AlarmsWindow(QWidget *parent = nullptr);
+    ~AlarmsWindow();
+
+private slots:
+    void startAlarm();
 
 private:
-    Ui::alarmsWindow *ui;
+    Ui::AlarmsWindow *ui;
 };
 
 #endif // ALARMSWINDOW_H

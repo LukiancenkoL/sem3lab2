@@ -2,43 +2,53 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <memory>
 #include <qtimer.h>
 #include <vector>
-#include <memory>
 #include <QTime>
 #include <QTimer>
-// #include <QVBoxLayout>
-// #include <QProcess>
+#include <QMediaPlayer>
 #include "timer.h"
 
-
 QT_BEGIN_NAMESPACE
-namespace Ui { class mainWindow; }
+namespace Ui {
+class MainWindow;
+}
 QT_END_NAMESPACE
 
-class mainWindow : public QMainWindow
+class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    mainWindow(QWidget *parent = nullptr);
-    ~mainWindow();
+    MainWindow(QWidget *parent = nullptr);
+    ~MainWindow();
 
-    void timers_list_add_item(Timer &&timer);
-    void alarms_list_add_item(Timer &&alarm);
+    void timersListAddItem(std::unique_ptr<Timer> timer);
+    void alarmsListAddItem(std::unique_ptr<Timer> alarm);
 
 private slots:
     void createAddWindow();
-    void updateAllTimers();
-
-
-private:
-    void timers_emplace_back(Timer &&timer);
-    void alarms_emplace_back(Timer &&alarm);
+    void update();
+    void pauseSelected();
+    void resumeSelected();
+    void adjustVolume();
 
 private:
-    std::vector<Timer> timers {};
-    std::vector<Timer> alarms {};
-    Ui::mainWindow *ui;
+    void updateTimers();
+    void updateAlarms();
+
+    void pauseTimers();
+    void resumeTimers();
+
+    void pauseAlarms();
+    void resumeAlarms();
+
+private:
+    std::vector<std::unique_ptr<Timer>> m_timers{};
+    std::vector<std::unique_ptr<Timer>> m_alarms{};
+    Ui::MainWindow *ui;
+    QMediaPlayer *player{};
+    QAudioOutput *audioOutput{};
 };
 #endif // MAINWINDOW_H

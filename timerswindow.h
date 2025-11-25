@@ -1,27 +1,25 @@
 #ifndef TIMERSWINDOW_H
 #define TIMERSWINDOW_H
 
-#include <QTimer>
 #include <QDialog>
 
-
 namespace Ui {
-class timersWindow;
+class TimersWindow;
 }
 
-class timersWindow : public QDialog
+class TimersWindow : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit timersWindow(QWidget *parent = nullptr);
-    ~timersWindow();
+    explicit TimersWindow(QWidget *parent = nullptr);
+    ~TimersWindow();
 
 private slots:
     void startTimer();
 
 private:
-    Ui::timersWindow *ui;
+    Ui::TimersWindow *ui;
 };
 
 #endif // TIMERSWINDOW_H

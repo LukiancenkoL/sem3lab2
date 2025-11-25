@@ -3,46 +3,52 @@
 #include "timerswindow.h"
 #include "alarmswindow.h"
 
-
-
+#include <QFileDialog>
 #include <QWidget>
 
-addWindow::addWindow(QWidget *parent)
-    : QDialog(parent)
-    , ui(new Ui::addWindow)
+AddWindow::AddWindow(QWidget *parent) : QDialog(parent), ui(new Ui::AddWindow)
 {
     ui->setupUi(this);
     connect(this->ui->addTimer, SIGNAL(clicked(bool)), this, SLOT(createTimerWindow()));
     connect(this->ui->addAlarm, SIGNAL(clicked(bool)), this, SLOT(createAlarmWindow()));
+    connect(this->ui->fileSelect, SIGNAL(clicked(bool)), this, SLOT(openFileExplorer()));
 }
 
-addWindow::~addWindow()
+AddWindow::~AddWindow()
 {
     delete ui;
 }
 
-void addWindow::createTimerWindow()
+QString AddWindow::documentPath() const
 {
-    timersWindow timerWindow{this};
-    timerWindow.setModal(true);
-
-    if (!timerWindow.exec())
-    {
-        return;
-    }
-
-
+    return this->m_documentPath;
 }
 
-void addWindow::createAlarmWindow()
+void AddWindow::createTimerWindow()
 {
-    alarmsWindow alarmWindow{this};
-    alarmWindow.setModal(true);
+    TimersWindow timerWindow{ this };
+    timerWindow.setModal(true);
 
-    if (!alarmWindow.exec())
-    {
+    if (!timerWindow.exec()) {
         return;
     }
+}
 
+void AddWindow::createAlarmWindow()
+{
+    AlarmsWindow alarmWindow{ this };
+    alarmWindow.setModal(true);
 
+    if (!alarmWindow.exec()) {
+        return;
+    }
+}
+void AddWindow::openFileExplorer()
+{
+    this->m_documentPath =
+            QFileDialog::getOpenFileName(this, "Select a file to open on completion");
+}
+void AddWindow::resetPath()
+{
+    this->m_documentPath = {};
 }
