@@ -39,7 +39,8 @@ void AlarmsWindow::startAlarm()
     const auto msecTimer = msecAlarmTime - msecSinceStartOfDay;
 
     if (msecTimer > std::chrono::milliseconds::zero()) {
-        mainwindow->alarmsListAddItem(std::make_unique<Timer>(msecTimer));
+        mainwindow->alarmsListAddItem(std::make_unique<Timer>(msecTimer, documentPath));
+        addwindow->resetPath();
         AlarmsWindow::accept();
         return;
     }
